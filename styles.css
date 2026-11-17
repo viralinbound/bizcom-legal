@@ -432,3 +432,5 @@ button[disabled]{opacity:.6;cursor:wait}
   .mega--two{font-size:clamp(110px,12.5vw,250px);margin-bottom:.4em}
   .mega__row--2{align-self:flex-start;margin-left:1.55em}
 }
+/* wordmark v3: refined size — present, not shouting */
+@media (min-width:761px){.mega--two{font-size:clamp(92px,8.8vw,176px)}}
