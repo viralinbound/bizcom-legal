@@ -1,7 +1,7 @@
 // Bizcom Legal — "Quiet Luxury" static builder.  Run: node build.mjs
 import fs from 'node:fs';
 
-const V = '5.2';
+const V = '5.3';
 const PHONE = '+61 3 9108 4865', TEL = 'tel:+61391084865', MOB = '+61 421 327 828', MOBTEL = 'tel:+61421327828';
 const EMAIL = 'lynn@bizcomlegal.com.au', WA = 'https://wa.me/61414822108';
 const ADDR = 'Suite 25, Third Floor, 2 Brandon Park Drive, Wheelers Hill VIC 3150';

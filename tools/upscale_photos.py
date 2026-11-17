@@ -36,7 +36,8 @@ sr.setModel("edsr", 4)
 
 def process(name: str) -> None:
     t = time.time()
-    img = cv2.imread(str(SRC / f"{name}.png"), cv2.IMREAD_COLOR)
+    src = ROOT / "assets" / "source" / f"{name}.png"
+    img = cv2.imread(str(src if src.exists() else SRC / f"{name}.png"), cv2.IMREAD_COLOR)
     img = cv2.fastNlMeansDenoisingColored(img, None, 2, 2, 5, 15)          # remove JPEG blocking only
     big = sr.upsample(img)                                                   # 2560 x 2560
     blur = cv2.GaussianBlur(big, (0, 0), 1.2)

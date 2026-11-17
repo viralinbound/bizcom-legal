@@ -8,6 +8,7 @@ and very fine luminance grain so skin and walls read as real photographic textur
 Master = assets/img/<name>-2560.jpg  ->  rewrites 2560 / 1920 / 1280 / 800 px.
 Usage:  python tools/finish_photos.py
 """
+import sys
 from pathlib import Path
 import numpy as np
 from PIL import Image, ImageFilter, ImageEnhance
@@ -26,7 +27,7 @@ def grain(im, sigma):
     return Image.fromarray(np.clip(a + n, 0, 255).astype(np.uint8))
 
 
-for name in PHOTOS:
+for name in (sys.argv[1:] or PHOTOS):
     master = Image.open(IMG / f"{name}-2560.jpg").convert("RGB")
     master = master.filter(ImageFilter.UnsharpMask(radius=1.5, percent=78, threshold=3))   # fine detail (small radius = no halos)
     master = master.filter(ImageFilter.UnsharpMask(radius=18, percent=14, threshold=0))    # clarity
