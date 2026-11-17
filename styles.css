@@ -405,3 +405,6 @@ button[disabled]{opacity:.6;cursor:wait}
 .sheet a.big small{font:italic 400 22px var(--serif);color:var(--red);letter-spacing:0}
 @media (max-width:760px){.shead .eyebrow{grid-column:auto}.eyebrow__n{font-size:24px}}
 @media (max-width:560px){.hero__meta .eyebrow__t--mute,.hero__meta .eyebrow__line{display:none}.eyebrow__t{white-space:normal}}
+/* giant wordmark: room above for the i-dot and B (no clipping), a little more air between letters */
+.mega{font-size:clamp(80px,28.6vw,600px);letter-spacing:-.052em}
+.mega .ch{padding-top:.24em;margin-top:-.24em;padding-right:.02em;margin-right:-.02em}
