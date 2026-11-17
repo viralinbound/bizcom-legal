@@ -22,13 +22,11 @@ node build.mjs
 Bump `V` in `build.mjs` when CSS/JS change so browsers fetch the new files.
 
 ## Photos
-`tools/enhance_photos.py` turns the 640px source photos into sharp 800/1600/2400px JPEGs in `assets/img/`
-using classic processing only (Lanczos upscale, de-blocking, unsharp mask, fine film grain) — no generative AI.
-Pages serve them with `srcset`, so phones load the small file and Retina/4K screens the large one.
-For true 4K detail, replace the sources with original high-resolution photography and re-run the script:
-```bash
-python tools/enhance_photos.py
-```
+Full-HD photos in `assets/img/` (800 / 1280 / 1920 / 2560 px), served with `srcset` so each screen gets the right size.
+- `tools/upscale_photos.py` — EDSR x4 super-resolution (OpenCV `dnn_superres`): reconstructs edges from the real pixels, no generative fill.
+  Needs `pip install opencv-contrib-python-headless` and `tools/models/EDSR_x4.pb` (not committed; from github.com/Saafke/EDSR_Tensorflow).
+- `tools/finish_photos.py` — crisp finishing pass (small-radius sharpening, clarity, fine grain).
+- `tools/enhance_photos.py` — classic Lanczos path, used for `wills-estates` because super-resolution smears tiny document text.
 
 ## Enquiry form
 Posts to FormSubmit (`formsubmit.co/ajax/<firm email>`). The firm's inbox must confirm the one-time activation email after the first submission before enquiries are delivered.

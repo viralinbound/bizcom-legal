@@ -434,3 +434,6 @@ button[disabled]{opacity:.6;cursor:wait}
 }
 /* wordmark v3: refined size — present, not shouting */
 @media (min-width:761px){.mega--two{font-size:clamp(92px,8.8vw,176px)}}
+/* footer CTA: keep pill layout (the generic .ft a{display:block} was un-centring the text) */
+.ft a.pill{display:inline-flex;align-items:center;justify-content:center;padding:0 28px;font-size:16px;line-height:1;opacity:1}
+.ft a.pill:hover{color:#fff}

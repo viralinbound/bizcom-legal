@@ -15,6 +15,7 @@ Outputs progressive JPEGs at 800 / 1600 / 2400 px into assets/img/ for srcset.
 
 Usage:  python tools/enhance_photos.py
 """
+import sys
 from pathlib import Path
 import numpy as np
 from PIL import Image, ImageFilter, ImageEnhance
@@ -24,8 +25,9 @@ SRC = ROOT / "assets"
 OUT = ROOT / "assets" / "img"
 OUT.mkdir(exist_ok=True)
 
-PHOTOS = ["commercial-law", "property-law", "family-law", "litigation", "wills-estates"]
-WIDTHS = [800, 1600, 2400]
+# Only photos where EDSR mangles tiny text (document close-ups) use this classic path.
+PHOTOS = ["wills-estates"]
+WIDTHS = [2560, 1920, 1280, 800]
 rng = np.random.default_rng(7)
 
 
@@ -61,5 +63,5 @@ def enhance(name: str) -> None:
 
 
 if __name__ == "__main__":
-    for p in PHOTOS:
+    for p in (sys.argv[1:] or PHOTOS):
         enhance(p)
