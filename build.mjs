@@ -1,7 +1,7 @@
 // Bizcom Legal — "Quiet Luxury" static builder.  Run: node build.mjs
 import fs from 'node:fs';
 
-const V = '5.0';
+const V = '5.2';
 const PHONE = '+61 3 9108 4865', TEL = 'tel:+61391084865', MOB = '+61 421 327 828', MOBTEL = 'tel:+61421327828';
 const EMAIL = 'lynn@bizcomlegal.com.au', WA = 'https://wa.me/61414822108';
 const ADDR = 'Suite 25, Third Floor, 2 Brandon Park Drive, Wheelers Hill VIC 3150';
@@ -41,7 +41,7 @@ const TESTI = [
 ];
 const pad = n => String(n).padStart(2, '0');
 // responsive Full-HD photo (assets/img/<name>-800|1280|1920|2560.jpg — tools/upscale_photos.py + finish_photos.py)
-const pic = (name, alt, sizes, attrs = '') => `<img src="assets/img/${name}-1920.jpg" srcset="assets/img/${name}-800.jpg 800w, assets/img/${name}-1280.jpg 1280w, assets/img/${name}-1920.jpg 1920w, assets/img/${name}-2560.jpg 2560w" sizes="${sizes}" alt="${alt}" width="1920" height="1920" decoding="async" ${attrs}>`;
+const pic = (name, alt, sizes, attrs = '') => `<img src="assets/img/${name}-1920.jpg?v=${V}" srcset="assets/img/${name}-800.jpg?v=${V} 800w, assets/img/${name}-1280.jpg?v=${V} 1280w, assets/img/${name}-1920.jpg?v=${V} 1920w, assets/img/${name}-2560.jpg?v=${V} 2560w" sizes="${sizes}" alt="${alt}" width="1920" height="1920" decoding="async" ${attrs}>`;
 const eb = (n, t) => `<div class="eyebrow"><span class="eyebrow__n">${String(n).slice(-2)}</span><span class="eyebrow__t">${t}</span><i class="eyebrow__line" aria-hidden="true"></i></div>`;
 const lines = (arr, tag = 'h1', cls = '') => `<${tag} class="lines ${cls}">${arr.map((l, i) => `<span class="ln"><span style="transition-delay:${i * 0.08}s">${l}</span></span>`).join('')}</${tag}>`;
 
