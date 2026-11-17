@@ -389,3 +389,19 @@ button[disabled]{opacity:.6;cursor:wait}
 .frame__cap{bottom:max(26px,5.5%)}
 .frame__pill{top:max(22px,5.5%)}
 @media (max-width:560px){.frame__cap{bottom:max(16px,5.5%)}.frame__pill{top:max(14px,5.5%)}}
+
+/* ---------- section eyebrow: red serif number · title · hairline ---------- */
+.eyebrow{display:flex;align-items:center;gap:14px;min-width:0}
+.eyebrow__n{font:italic 400 28px/1 var(--serif);color:var(--red);letter-spacing:0;transform:translateY(-1px)}
+.eyebrow__t{font:500 15px/1.2 var(--sans);letter-spacing:-.01em;color:var(--ink);white-space:nowrap}
+.eyebrow__t--mute{color:var(--mute);font-weight:400}
+.eyebrow__line{flex:1;height:1px;background:var(--line);min-width:24px}
+.eyebrow .dot{margin:0}
+.shead .eyebrow{grid-column:1/7;align-self:center}
+.shead .eyebrow:only-child{grid-column:1/13}
+.hero__meta{display:block;border-top:0;padding:14px 0 6px}
+.phead__meta{display:block;border-bottom:0;padding-bottom:0}
+.svc__l .eyebrow{margin-bottom:16px;max-width:360px}
+.sheet a.big small{font:italic 400 22px var(--serif);color:var(--red);letter-spacing:0}
+@media (max-width:760px){.shead .eyebrow{grid-column:auto}.eyebrow__n{font-size:24px}}
+@media (max-width:560px){.hero__meta .eyebrow__t--mute,.hero__meta .eyebrow__line{display:none}.eyebrow__t{white-space:normal}}

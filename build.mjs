@@ -1,7 +1,7 @@
 // Bizcom Legal — "Quiet Luxury" static builder.  Run: node build.mjs
 import fs from 'node:fs';
 
-const V = '3.1';
+const V = '3.2';
 const PHONE = '+61 3 9108 4865', TEL = 'tel:+61391084865', MOB = '+61 421 327 828', MOBTEL = 'tel:+61421327828';
 const EMAIL = 'lynn@bizcomlegal.com.au', WA = 'https://wa.me/61414822108';
 const ADDR = 'Suite 25, Third Floor, 2 Brandon Park Drive, Wheelers Hill VIC 3150';
@@ -40,6 +40,7 @@ const TESTI = [
   [9, 'Highly recommend Bizcom Legal for commercial law…', 'T. Brown', 'Entrepreneur'],
 ];
 const pad = n => String(n).padStart(2, '0');
+const eb = (n, t) => `<div class="eyebrow"><span class="eyebrow__n">${String(n).slice(-2)}</span><span class="eyebrow__t">${t}</span><i class="eyebrow__line" aria-hidden="true"></i></div>`;
 const lines = (arr, tag = 'h1', cls = '') => `<${tag} class="lines ${cls}">${arr.map((l, i) => `<span class="ln"><span style="transition-delay:${i * 0.08}s">${l}</span></span>`).join('')}</${tag}>`;
 
 const form = id => `
@@ -69,7 +70,7 @@ const form = id => `
 const talk = (n, head = ['Let’s talk', '<i class=\"m\">about your matter.</i>']) => `
 <section class="sec sec--alt" id="enquire">
   <div class="wrap">
-    <div class="shead"><span class="lbl">N°${n}</span><span class="lbl lbl--mute">Get in touch</span><p class="rv">New enquiries are typically acknowledged within one business day. Tell us what you need — we will point you in the right direction.</p></div>
+    <div class="shead">${eb((n), 'Get in touch')}<p class="rv">New enquiries are typically acknowledged within one business day. Tell us what you need — we will point you in the right direction.</p></div>
     <div class="talk">
       ${lines(head, 'h2', 'talk__h')}
       <div class="talk__info rv">
@@ -106,7 +107,7 @@ const page = ({ file, title, desc, body }) => `<!doctype html>
   </div>
 </header>
 <div class="sheet" id="sheet" aria-hidden="true">
-  ${NAV.map(([h, t], i) => `<a class="big" href="${h}">${t}<small>N°${pad(i + 1)}</small></a>`).join('')}
+  ${NAV.map(([h, t], i) => `<a class="big" href="${h}">${t}<small>${pad(i + 1)}</small></a>`).join('')}
   <div class="sheet__foot"><a class="pill pill--ink" href="contact.html">Book a consultation</a><a class="pill" href="${TEL}">${PHONE}</a></div>
 </div>
 <main id="main">
@@ -137,7 +138,7 @@ ${body}
 const phead = (n, crumb, h, p) => `
 <section class="phead">
   <div class="wrap">
-    <div class="phead__meta"><span class="lbl">N°${n}</span><span class="lbl lbl--mute">Bizcom Legal / ${crumb}</span></div>
+    <div class="phead__meta">${eb(n, crumb)}</div>
     ${lines(h)}
     <div class="phead__p"><p class="rv">${p}</p></div>
   </div>
@@ -147,7 +148,7 @@ const phead = (n, crumb, h, p) => `
 const home = `
 <section class="hero">
   <div class="wrap">
-    <div class="hero__meta"><span class="lbl">N°000</span><span class="lbl lbl--mute">Victorian law firm — Wheelers Hill, VIC</span><span class="lbl lbl--mute">Admitted — Supreme Court, 2009</span></div>
+    <div class="hero__meta"><div class="eyebrow"><i class="dot" aria-hidden="true"></i><span class="eyebrow__t">Victorian law firm — Wheelers Hill, VIC</span><i class="eyebrow__line" aria-hidden="true"></i><span class="eyebrow__t eyebrow__t--mute">Admitted — Supreme Court, 2009</span></div></div>
     <h1 class="mega" aria-label="Bizcom">${'Bizcom'.split('').map((c, i) => `<span class="ch" aria-hidden="true"><span style="transition-delay:${0.15 + i * 0.06}s">${c}</span></span>`).join('')}<i class="blade" aria-hidden="true"></i></h1>
     <div class="hero__row">
       <p class="hero__h rv">Commercial, Property &amp; Dispute Resolution. <span>Practical legal advice, tailored to you.</span></p>
@@ -163,7 +164,7 @@ const home = `
 
 <section class="sec">
   <div class="wrap">
-    <div class="shead"><span class="lbl">N°001</span><span class="lbl lbl--mute">The firm</span></div>
+    <div class="shead">${eb('001', 'The firm')}</div>
     <div class="state">
       <p class="state__t" data-fill>Lynn Saldanha is the Principal of Bizcom Legal — admitted to practice as a Solicitor and Barrister in the Supreme Court in <em data-red>2009,</em> with expertise across commercial law, property law, family law and dispute resolution.</p>
       <div class="state__foot rv"><span class="pill pill--line">Quality advice across a range of industries</span><span class="pill pill--line">Focused on the best outcomes for you</span><a class="pill pill--ink" href="about.html">About the firm ${ar}</a></div>
@@ -181,7 +182,7 @@ const home = `
 
 <section class="sec" style="padding-top:clamp(28px,3.4vw,52px)">
   <div class="wrap">
-    <div class="shead"><span class="lbl">N°002</span><span class="lbl lbl--mute">Practice areas</span><p class="rv">Targeted advice across the matters Victorian businesses and families face most. Open any area to see what it covers.</p></div>
+    <div class="shead">${eb('002', 'Practice areas')}<p class="rv">Targeted advice across the matters Victorian businesses and families face most. Open any area to see what it covers.</p></div>
     <div class="acc" data-acc>
       ${AREAS.map((a, i) => `<div class="acc__i${i === 0 ? ' open' : ''}">
         <button class="acc__h" aria-expanded="${i === 0}"><span class="acc__n">${pad(i + 1)}</span><span class="acc__t">${esc(a.t)}</span><span class="acc__x">${plus}</span></button>
@@ -196,7 +197,7 @@ const home = `
 
 <section class="sec sec--alt">
   <div class="wrap">
-    <div class="shead"><span class="lbl">N°003</span><span class="lbl lbl--mute">How it works</span><p class="rv">A clear path from first call to favourable outcome.</p></div>
+    <div class="shead">${eb('003', 'How it works')}<p class="rv">A clear path from first call to favourable outcome.</p></div>
     <div class="proc">
       <article class="proc__c rv"><span class="proc__n">01</span><div><h3>Consultation</h3><p>Contact us via phone or email. Our staff books your consultation and a confirmation email is sent.</p></div></article>
       <article class="proc__c rv" data-d="1"><span class="proc__n">02</span><div><h3>Strategise</h3><p>You receive tailored advice — clear next steps, with a focus on the results that matter to you.</p></div></article>
@@ -214,7 +215,7 @@ const home = `
 
 <section class="sec">
   <div class="wrap">
-    <div class="shead"><span class="lbl">N°004</span><span class="lbl lbl--mute">The Principal</span></div>
+    <div class="shead">${eb('004', 'The Principal')}</div>
     <div class="lynn">
       ${lines(['Lynn', 'Saldanha'], 'h2', 'lynn__name')}
       <div class="lynn__side rv"><p>Principal Legal Practitioner — LLB, GDLP, BA. Admitted as a Solicitor and Barrister in the Supreme Court in 2009. Passionate about achieving the best outcomes for clients.</p>
@@ -225,7 +226,7 @@ const home = `
 
 <section class="sec sec--alt">
   <div class="wrap">
-    <div class="shead"><span class="lbl">N°005</span><span class="lbl lbl--mute">What clients say</span></div>
+    <div class="shead">${eb('005', 'What clients say')}</div>
   </div>
   <div class="marq" aria-label="Client testimonials">
     <div class="marq__track">${[0, 1].map(dup => TESTI.map(([i, q, n, r]) => `<figure class="tq"${dup ? ' aria-hidden="true"' : ''}><blockquote>“${q}”</blockquote><figcaption><img src="assets/testimonial-${i}.png" alt="" loading="lazy" width="44" height="44"><div><b>${n}</b><span>${r}</span></div></figcaption></figure>`).join('')).join('')}</div>
@@ -239,7 +240,7 @@ const about = phead('01', 'About', ['Bizcom’s', '<i class=\"m\">legal expertis
 <section class="sec--tight"><div class="wrap"><figure class="frame frame--band" data-frame><img src="assets/family-law.png" alt="" data-par><span class="pill frame__pill">Admitted — Supreme Court, 2009</span></figure></div></section>
 <section class="sec">
   <div class="wrap">
-    <div class="shead"><span class="lbl">N°002</span><span class="lbl lbl--mute">The Principal</span></div>
+    <div class="shead">${eb('002', 'The Principal')}</div>
     <div class="lynn">
       ${lines(['Lynn', 'Saldanha'], 'h2', 'lynn__name')}
       <div class="lynn__side rv"><p>Lynn Saldanha is the Principal of Bizcom Legal. Admitted to practice as a Solicitor and Barrister in the Supreme Court in 2009. Expertise in commercial law, property law, family law and dispute resolution. Passionate about achieving the best outcomes for clients.</p><a class="pill pill--ink" href="contact.html">Arrange a consultation ${ar}</a></div>
@@ -248,14 +249,14 @@ const about = phead('01', 'About', ['Bizcom’s', '<i class=\"m\">legal expertis
 </section>
 <section class="sec sec--alt">
   <div class="wrap">
-    <div class="shead"><span class="lbl">N°003</span><span class="lbl lbl--mute">Our approach</span><p class="rv">We keep advice clear and commercial — explaining your options in plain language and staying with you through to a favourable outcome.</p></div>
+    <div class="shead">${eb('003', 'Our approach')}<p class="rv">We keep advice clear and commercial — explaining your options in plain language and staying with you through to a favourable outcome.</p></div>
     <p class="state__t" data-fill style="margin-bottom:clamp(22px,3vw,44px)">Practical advice, <em data-red>accountable delivery.</em></p>
     <div class="two"><div></div><ul class="rows rv">${['Admitted Solicitor &amp; Barrister, Supreme Court of Victoria (2009)', 'Commercial, property, family law &amp; dispute resolution', 'Conveyancing across VIC, NSW, QLD, WA &amp; ACT', 'Litigation experience across VCAT and the courts', 'Quality advice across a range of industries', 'Estate planning, probate &amp; letters of administration', 'Clear communication at every stage', 'Focused on the best outcomes for you'].map((x, i) => `<li><span>${x}</span><span>${pad(i + 1)}</span></li>`).join('')}</ul></div>
   </div>
 </section>
 <section class="sec">
   <div class="wrap">
-    <div class="shead"><span class="lbl">N°004</span><span class="lbl lbl--mute">The team</span><p class="rv">People behind your matter.</p></div>
+    <div class="shead">${eb('004', 'The team')}<p class="rv">People behind your matter.</p></div>
     <div class="team">
       <article class="tm rv"><span class="tm__i">LS<i class="blade"></i></span><div><h3>Lynn Saldanha</h3><small>Principal Legal Practitioner</small><p>Principal of Bizcom Legal. Admitted as a Solicitor and Barrister in the Supreme Court (2009), with expertise across commercial, property, family law and dispute resolution.</p></div></article>
       <article class="tm rv" data-d="1"><span class="tm__i">JC</span><div><h3>James Chen</h3><small>Senior Lawyer</small><p>Focuses on commercial and property matters — contracts, leasing, conveyancing and business transactions for clients across a range of industries.</p></div></article>
@@ -270,7 +271,7 @@ const services = phead('02', 'Services', ['Legal services,', '<i class=\"m\">by 
 <nav class="subnav" aria-label="Practice areas"><div class="wrap">${AREAS.map((a, i) => `<a href="#${a.id}">${pad(i + 1)} ${esc(a.t)}</a>`).join('')}</div></nav>
 <div class="wrap" data-spy>
   ${AREAS.map((a, i) => `<section class="svc" id="${a.id}">
-    <div class="svc__l rv"><span class="lbl">N°${pad(i + 1)} — ${esc(a.t)}</span><h2>${esc(a.full)}</h2><p>${a.lead}</p><a class="pill pill--ink" href="contact.html">Enquire ${ar}</a></div>
+    <div class="svc__l rv">${eb(pad(i + 1), esc(a.t))}<h2>${esc(a.full)}</h2><p>${a.lead}</p><a class="pill pill--ink" href="contact.html">Enquire ${ar}</a></div>
     <div class="svc__r"><figure class="frame" data-frame><img src="assets/${a.img}.png" alt="${esc(a.full)}" loading="lazy" data-par></figure><ul class="rows rv">${a.items.map((x, k) => `<li><span>${esc(x)}</span><span>${pad(k + 1)}</span></li>`).join('')}</ul></div>
   </section>`).join('\n  ')}
 </div>
@@ -285,13 +286,13 @@ const LINKS = [['Victoria Online', 'https://www.vic.gov.au'], ['OAIC', 'https://
 const resources = phead('03', 'Resources', ['Important', '<i class=\"m\">information</i>'], `The reference documents below are available free on request — by email to ${EMAIL} or in person at our office. They are general information only and not legal advice.`) + `
 <section class="sec" style="padding-top:0">
   <div class="wrap docs">
-    ${DOCS.map(([g, list], gi) => `<div class="shead" style="margin-top:${gi ? 'clamp(36px,4.4vw,64px)' : '0'}"><span class="lbl">N°0${gi + 1}</span><span class="lbl lbl--mute">${g}</span></div>
+    ${DOCS.map(([g, list], gi) => `<div class="shead" style="margin-top:${gi ? 'clamp(36px,4.4vw,64px)' : '0'}">${eb('0'+(gi + 1), (g))}</div>
     <ul class="rows rv">${list.map(([t, d]) => `<li><div><b>${t}</b><small>${d}</small></div><a href="mailto:${EMAIL}?subject=${encodeURIComponent('Document request: ' + t.replace(/&amp;/g, '&'))}">Request →</a></li>`).join('')}</ul>`).join('')}
   </div>
 </section>
 <section class="sec sec--alt">
   <div class="wrap">
-    <div class="shead"><span class="lbl">N°03</span><span class="lbl lbl--mute">Helpful links</span><p class="rv">Official Victorian &amp; Australian resources. External sites we are not responsible for, provided for your convenience.</p></div>
+    <div class="shead">${eb('03', 'Helpful links')}<p class="rv">Official Victorian &amp; Australian resources. External sites we are not responsible for, provided for your convenience.</p></div>
     <div class="lgrid rv">${LINKS.map(([t, u]) => `<a href="${u}" target="_blank" rel="noopener"><span>${new URL(u).hostname.replace('www.', '')}</span>${t}</a>`).join('')}</div>
   </div>
 </section>
