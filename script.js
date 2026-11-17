@@ -29,6 +29,7 @@
   const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } }), { rootMargin: '0px 0px -10% 0px' });
   $$('.rv,.lines').forEach(el => io.observe(el));
   requestAnimationFrame(() => document.documentElement.classList.add('loaded'));
+  setTimeout(() => document.documentElement.classList.add('settled'), reduce ? 0 : 2600); // wordmark intro done → unclip letters
 
   /* word-fill statements */
   const fills = $$('[data-fill]').map(el => {

@@ -21,6 +21,15 @@ node build.mjs
 ```
 Bump `V` in `build.mjs` when CSS/JS change so browsers fetch the new files.
 
+## Photos
+`tools/enhance_photos.py` turns the 640px source photos into sharp 800/1600/2400px JPEGs in `assets/img/`
+using classic processing only (Lanczos upscale, de-blocking, unsharp mask, fine film grain) — no generative AI.
+Pages serve them with `srcset`, so phones load the small file and Retina/4K screens the large one.
+For true 4K detail, replace the sources with original high-resolution photography and re-run the script:
+```bash
+python tools/enhance_photos.py
+```
+
 ## Enquiry form
 Posts to FormSubmit (`formsubmit.co/ajax/<firm email>`). The firm's inbox must confirm the one-time activation email after the first submission before enquiries are delivered.
 

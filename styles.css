@@ -423,3 +423,7 @@ button[disabled]{opacity:.6;cursor:wait}
 @media (max-width:560px){.mega--two{margin-bottom:.22em}}
 .mega--two{margin-bottom:.38em}
 @media (max-width:560px){.mega--two{margin-bottom:.38em}}
+/* italic "Legal": room on every side of each letter (g overhangs left/right and drops below) */
+.mega__row--2 .ch{padding:.3em .12em .34em .12em;margin:-.3em -.12em -.34em -.12em}
+/* once the rise animation has finished, nothing in the wordmark is clipped at all */
+.settled .mega .ch{overflow:visible}

@@ -1,7 +1,7 @@
 // Bizcom Legal — "Quiet Luxury" static builder.  Run: node build.mjs
 import fs from 'node:fs';
 
-const V = '3.8';
+const V = '4.0';
 const PHONE = '+61 3 9108 4865', TEL = 'tel:+61391084865', MOB = '+61 421 327 828', MOBTEL = 'tel:+61421327828';
 const EMAIL = 'lynn@bizcomlegal.com.au', WA = 'https://wa.me/61414822108';
 const ADDR = 'Suite 25, Third Floor, 2 Brandon Park Drive, Wheelers Hill VIC 3150';
@@ -40,6 +40,8 @@ const TESTI = [
   [9, 'Highly recommend Bizcom Legal for commercial law…', 'T. Brown', 'Entrepreneur'],
 ];
 const pad = n => String(n).padStart(2, '0');
+// responsive enhanced photo (assets/img/<name>-800|1600|2400.jpg, made by tools/enhance_photos.py)
+const pic = (name, alt, sizes, attrs = '') => `<img src="assets/img/${name}-1600.jpg" srcset="assets/img/${name}-800.jpg 800w, assets/img/${name}-1600.jpg 1600w, assets/img/${name}-2400.jpg 2400w" sizes="${sizes}" alt="${alt}" width="1600" height="1600" decoding="async" ${attrs}>`;
 const eb = (n, t) => `<div class="eyebrow"><span class="eyebrow__n">${String(n).slice(-2)}</span><span class="eyebrow__t">${t}</span><i class="eyebrow__line" aria-hidden="true"></i></div>`;
 const lines = (arr, tag = 'h1', cls = '') => `<${tag} class="lines ${cls}">${arr.map((l, i) => `<span class="ln"><span style="transition-delay:${i * 0.08}s">${l}</span></span>`).join('')}</${tag}>`;
 
@@ -157,7 +159,7 @@ const home = `
         <div class="hero__btns"><a class="pill pill--ink" href="contact.html">Book a consultation ${ar}</a><a class="pill" href="${TEL}">${PHONE}</a></div>
       </div>
     </div>
-    <figure class="frame frame--hero" data-frame><img src="assets/commercial-law.png" alt="Bizcom Legal advising clients in a boardroom" fetchpriority="high" data-par><span class="pill frame__pill">Practical · Trusted · Clear</span>
+    <figure class="frame frame--hero" data-frame>${pic('commercial-law', 'Bizcom Legal advising clients in a boardroom', '100vw', 'fetchpriority="high" data-par')}<span class="pill frame__pill">Practical · Trusted · Clear</span>
       <figcaption class="frame__cap"><span class="lbl">Lynn Saldanha — Principal Legal Practitioner</span><span class="lbl">LLB · GDLP · BA</span></figcaption></figure>
   </div>
 </section>
@@ -175,7 +177,7 @@ const home = `
 <section class="sec--tight" id="practice">
   <div class="wrap">
     <div class="ptitle rv"><h2>Practice</h2></div>
-    <figure class="frame frame--band" data-frame><img src="assets/property-law.png" alt="" data-par loading="lazy">
+    <figure class="frame frame--band" data-frame>${pic('property-law', '', '100vw', 'data-par loading="lazy"')}
       <figcaption class="frame__cap"><p class="frame__q">Five capabilities, one accountable practice.</p><span class="lbl">From boardroom to settlement</span></figcaption></figure>
   </div>
 </section>
@@ -187,7 +189,7 @@ const home = `
       ${AREAS.map((a, i) => `<div class="acc__i${i === 0 ? ' open' : ''}">
         <button class="acc__h" aria-expanded="${i === 0}"><span class="acc__n">${pad(i + 1)}</span><span class="acc__t">${esc(a.t)}</span><span class="acc__x">${plus}</span></button>
         <div class="acc__b"><div><div class="acc__body">
-          <div class="acc__img"><img src="assets/${a.img}.png" alt="" loading="lazy"></div>
+          <div class="acc__img">${pic(a.img, '', '(max-width:760px) 100vw, 26vw', 'loading="lazy"')}</div>
           <div class="acc__txt"><p>${a.lead}</p><ul class="rows">${a.items.map((x, k) => `<li><span>${esc(x)}</span><span>${pad(k + 1)}</span></li>`).join('')}</ul><a class="pill pill--ink" style="align-self:flex-start" href="services.html#${a.id}">Explore ${esc(a.t.toLowerCase())} ${ar}</a></div>
         </div></div></div>
       </div>`).join('\n      ')}
@@ -208,7 +210,7 @@ const home = `
 
 <section class="sec--tight">
   <div class="wrap">
-    <figure class="frame frame--band" data-frame><img src="assets/litigation.png" alt="" data-par loading="lazy"><span class="pill frame__pill">The Bizcom approach</span>
+    <figure class="frame frame--band" data-frame>${pic('litigation', '', '100vw', 'data-par loading="lazy"')}<span class="pill frame__pill">The Bizcom approach</span>
       <figcaption class="frame__cap"><p class="frame__q">Quality advice across a range of industries — focused on the best outcomes for you.</p></figcaption></figure>
   </div>
 </section>
@@ -237,7 +239,7 @@ ${talk('006')}`;
 
 /* ================= ABOUT ================= */
 const about = phead('01', 'About', ['Bizcom’s', '<i class=\"m\">legal expertise</i>'], 'A Victorian firm with a practical approach — advising on commercial law, property and conveyancing (VIC, NSW, QLD, WA &amp; ACT), family law, dispute resolution and litigation (VCAT &amp; the courts), and wills &amp; estates.') + `
-<section class="sec--tight"><div class="wrap"><figure class="frame frame--band" data-frame><img src="assets/family-law.png" alt="" data-par><span class="pill frame__pill">Admitted — Supreme Court, 2009</span></figure></div></section>
+<section class="sec--tight"><div class="wrap"><figure class="frame frame--band" data-frame>${pic('family-law', '', '100vw', 'data-par')}<span class="pill frame__pill">Admitted — Supreme Court, 2009</span></figure></div></section>
 <section class="sec">
   <div class="wrap">
     <div class="shead">${eb('002', 'The Principal')}</div>
@@ -272,7 +274,7 @@ const services = phead('02', 'Services', ['Legal services,', '<i class=\"m\">by 
 <div class="wrap" data-spy>
   ${AREAS.map((a, i) => `<section class="svc" id="${a.id}">
     <div class="svc__l rv">${eb(pad(i + 1), esc(a.t))}<h2>${esc(a.full)}</h2><p>${a.lead}</p><a class="pill pill--ink" href="contact.html">Enquire ${ar}</a></div>
-    <div class="svc__r"><figure class="frame" data-frame><img src="assets/${a.img}.png" alt="${esc(a.full)}" loading="lazy" data-par></figure><ul class="rows rv">${a.items.map((x, k) => `<li><span>${esc(x)}</span><span>${pad(k + 1)}</span></li>`).join('')}</ul></div>
+    <div class="svc__r"><figure class="frame" data-frame>${pic(a.img, esc(a.full), '(max-width:860px) 100vw, 46vw', 'loading="lazy" data-par')}</figure><ul class="rows rv">${a.items.map((x, k) => `<li><span>${esc(x)}</span><span>${pad(k + 1)}</span></li>`).join('')}</ul></div>
   </section>`).join('\n  ')}
 </div>
 ${talk('03', ['Not sure which', '<i class=\"m\">area fits?</i>'])}`;
