@@ -1,7 +1,7 @@
 // Bizcom Legal — "Quiet Luxury" static builder.  Run: node build.mjs
 import fs from 'node:fs';
 
-const V = '3.3';
+const V = '3.8';
 const PHONE = '+61 3 9108 4865', TEL = 'tel:+61391084865', MOB = '+61 421 327 828', MOBTEL = 'tel:+61421327828';
 const EMAIL = 'lynn@bizcomlegal.com.au', WA = 'https://wa.me/61414822108';
 const ADDR = 'Suite 25, Third Floor, 2 Brandon Park Drive, Wheelers Hill VIC 3150';
@@ -149,7 +149,7 @@ const home = `
 <section class="hero">
   <div class="wrap">
     <div class="hero__meta"><div class="eyebrow"><i class="dot" aria-hidden="true"></i><span class="eyebrow__t">Victorian law firm — Wheelers Hill, VIC</span><i class="eyebrow__line" aria-hidden="true"></i><span class="eyebrow__t eyebrow__t--mute">Admitted — Supreme Court, 2009</span></div></div>
-    <h1 class="mega" aria-label="Bizcom">${'Bizcom'.split('').map((c, i) => `<span class="ch" aria-hidden="true"><span style="transition-delay:${0.15 + i * 0.06}s">${c}</span></span>`).join('')}<i class="blade" aria-hidden="true"></i></h1>
+    <h1 class="mega mega--two" aria-label="Bizcom Legal"><span class="mega__row" aria-hidden="true">${'Bizcom'.split('').map((c, i) => `<span class="ch"><span style="transition-delay:${0.15 + i * 0.06}s">${c}</span></span>`).join('')}</span><span class="mega__row mega__row--2" aria-hidden="true">${'Legal'.split('').map((c, i) => `<span class="ch"><span style="transition-delay:${0.55 + i * 0.06}s">${c}</span></span>`).join('')}<i class="blade"></i></span></h1>
     <div class="hero__row">
       <p class="hero__h rv">Commercial, Property &amp; Dispute Resolution. <span>Practical legal advice, tailored to you.</span></p>
       <div class="hero__side rv" data-d="1">
