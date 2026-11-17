@@ -72,8 +72,8 @@
     frames.forEach(f => {
       if (!f.vis) return;
       const r = f.el.getBoundingClientRect();
-      const p = clamp((vh - r.top) / (vh * 0.75), 0, 1);
-      f.el.style.setProperty('--ci', ((1 - p) * 6).toFixed(2) + '%');
+      const p = clamp((vh - r.top) / (vh * 0.4), 0, 1); // fully open early so captions are never clipped
+      f.el.style.setProperty('--ci', ((1 - p) * 4).toFixed(2) + '%');
       if (f.img) f.img.style.setProperty('--py', (((r.top + r.height / 2) - vh / 2) / vh * -7).toFixed(2) + '%');
     });
   };
