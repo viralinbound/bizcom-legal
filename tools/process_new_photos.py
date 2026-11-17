@@ -12,7 +12,8 @@ SRC, OUT = ROOT / "assets" / "source", ROOT / "assets" / "img"
 WIDTHS = [2560, 1920, 1280, 800]
 
 for name in (sys.argv[1:] or [p.stem for p in SRC.glob("*.webp")]):
-    im = Image.open(SRC / f"{name}.webp").convert("RGB")
+    f = next(x for x in (SRC / f"{name}.webp", SRC / f"{name}.png") if x.exists())
+    im = Image.open(f).convert("RGB")
     for w in WIDTHS:
         r = im.resize((w, w), Image.LANCZOS)
         up = w / im.width

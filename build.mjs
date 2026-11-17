@@ -1,7 +1,7 @@
 // Bizcom Legal — "Quiet Luxury" static builder.  Run: node build.mjs
 import fs from 'node:fs';
 
-const V = '5.3';
+const V = '5.5';
 const PHONE = '+61 3 9108 4865', TEL = 'tel:+61391084865', MOB = '+61 421 327 828', MOBTEL = 'tel:+61421327828';
 const EMAIL = 'lynn@bizcomlegal.com.au', WA = 'https://wa.me/61414822108';
 const ADDR = 'Suite 25, Third Floor, 2 Brandon Park Drive, Wheelers Hill VIC 3150';
@@ -177,7 +177,7 @@ const home = `
 <section class="sec--tight" id="practice">
   <div class="wrap">
     <div class="ptitle rv"><h2>Practice</h2></div>
-    <figure class="frame frame--band" data-frame>${pic('property-law', '', '100vw', 'data-par loading="lazy"')}
+    <figure class="frame frame--band" data-frame>${pic('property-law', '', '100vw', 'data-par loading="lazy" style="object-position:50% 64%"')}
       <figcaption class="frame__cap"><p class="frame__q">Five capabilities, one accountable practice.</p><span class="lbl">From boardroom to settlement</span></figcaption></figure>
   </div>
 </section>
