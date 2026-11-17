@@ -427,3 +427,8 @@ button[disabled]{opacity:.6;cursor:wait}
 .mega__row--2 .ch{padding:.3em .12em .34em .12em;margin:-.3em -.12em -.34em -.12em}
 /* once the rise animation has finished, nothing in the wordmark is clipped at all */
 .settled .mega .ch{overflow:visible}
+/* wordmark: calmer size on laptops/desktops; "Legal" tucks in under "Bizcom" instead of flying far right */
+@media (min-width:761px){
+  .mega--two{font-size:clamp(110px,12.5vw,250px);margin-bottom:.4em}
+  .mega__row--2{align-self:flex-start;margin-left:1.55em}
+}
